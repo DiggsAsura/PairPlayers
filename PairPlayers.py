@@ -1,3 +1,7 @@
+# version 0.02
+#
+# - Updating to take inputs. 
+#
 # version 0.01.
 #
 # This program takes a list of players, and return all the possible combinations, in groupings
@@ -14,7 +18,13 @@
 
 import itertools
 
-players = ['Diggs', 'Ivory', 'Whitemonster', 'Milo', 'Bergtroll']
+# players = ['Diggs', 'Ivory', 'Whitemonster', 'Milo', 'Bergtroll']
+players = []
+how_many_attending = input("How many players (number): ")
+
+while (len(players) + 1) <= int(how_many_attending):
+    player = input("Name of player: ")
+    players.append(player)
 
 players_combo = itertools.combinations(players, 2)
 
