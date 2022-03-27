@@ -28,5 +28,7 @@ while (len(players) + 1) <= int(how_many_attending):
 
 players_combo = itertools.combinations(players, 2)
 
+print('\n')
 for combo in players_combo:
     print(combo)
+print('\n')
