@@ -1,3 +1,6 @@
+# version 0.04, March 28 2022
+# - Updated logic where it's less then 4 players, just one stage is selected automatically.
+#
 # version 0.03, March 28 2022 
 # Big thanks to gerhard_adler for solving some cruical logic!
 #
@@ -133,8 +136,19 @@ def two_stages(players):
         print(f'''\t| {p1} VS. {p2} {tabs} | {p3} VS. {p4}\n''')
 
 # 1 or 2 stages and print the results
-stages = input("One or two stages? (input 1 or 2): ")
-if stages == '1':
+# 1 stage is automatic if number of players is less then 4
+if len(players) < 4:
     one_stage(combos)
-elif stages == '2':
-    two_stages(players)
+else:    
+    stages = input("One or two stages? (input 1 or 2): ")
+    if stages == '1':
+        one_stage(combos)
+    elif stages == '2':
+        two_stages(combos)
+
+     
+            
+    
+
+
+
