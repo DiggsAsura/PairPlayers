@@ -144,7 +144,7 @@ else:
     if stages == '1':
         one_stage(combos)
     elif stages == '2':
-        two_stages(combos)
+        two_stages(players)
 
      
             
