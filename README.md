@@ -9,9 +9,9 @@ all the combinations, in groupings of 2.
 
 ### Update history
 v0.03 release (March 28 2022)
-  This is quite a big one. Some big brain logic added by gerhardadler to handle a 4 way restream
-  in CTL. Means, two matches can happen without the returned lists have the same player on 
-  both stages at the same time.
+This is quite a big one. Some big brain logic added by gerhardadler to handle a 4 way restream
+in CTL. Means, two matches can happen without the returned lists have the same player on 
+both stages at the same time.
 
   **Updates**:
   - Big brain logic for 4 way by gerhardadler, THANK YOU!!
