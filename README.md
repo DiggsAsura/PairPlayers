@@ -1,4 +1,4 @@
-# PairPlayers v0.04
+# PairPlayers v0.05
 
 ### Introduction
 PairPlayers was made in a hurry where we needed to sort out all possible combinations of
@@ -16,6 +16,11 @@ all the combinations, in groupings of 2.
 
 
 ### Update history
+v0.05 release (March 28 2022)  
+- gerhardadler fixed logic to handle any amount of players. Big kudos!
+
+---
+
 v0.04 release (March 28 2022)  
 - Improved logic. Less then 4 players? 1 stage is only option.  
 
