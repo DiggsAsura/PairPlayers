@@ -1,4 +1,4 @@
-# PairPlayers v0.03
+# PairPlayers v0.04
 
 ### Introduction
 PairPlayers was made in a hurry where we needed to sort out all possible combinations of
@@ -16,6 +16,11 @@ all the combinations, in groupings of 2.
 
 
 ### Update history
+v0.04 release (March 28 2022)  
+- Improved logic. Less then 4 players? 1 stage is only option.  
+
+---
+
 v0.03 release (March 28 2022)  
 This is quite a big one. Some big brain logic added by gerhardadler to handle a 4 way restream
 in CTL. Means, two matches can happen without the returned lists have the same player on 
