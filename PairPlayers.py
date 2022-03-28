@@ -30,6 +30,7 @@
 
 
 import itertools
+import time
 
 attending = input("How many players attending? (input number): ")
 players = []
@@ -53,32 +54,69 @@ def one_stage(combos):
         match_no += 1
     return
 
-def two_stages(combos):
-    left = combos[:len(combos)//2]
-    right = combos[len(combos)//2:]
+def two_stages(players):
+    matches = []
 
-    results = []
+    for i, value in enumerate(players):
+        players[i] = [value, 0]
 
-    for x in range(len(left)):
-        for y in range(len(right)):
-            for z in left[x]:
-                if z in right[(x + y) % len(right)]:
-                    break
-            else:
-                rightAppend = right.pop((x + y) % len(right))
-                results.append((left[x] , rightAppend))
+    # This loop takes the player list containing lists with playername and count as input.
+    # ------------------------------------------------------------------------------------
+    # For example:
+    # players = [["player1", 0], ["player2", 0], ["player3", 0], ["player4", 0]]
+    #
+    # The count is used to make sure all players are used evenly throughout the matches.
+    # This makes sure that a situation like this doesn't happen:
+    # ------------------------------------------------------------------------------------
+    # player1 vs player2 | player3 vs player4
+    # player1 vs player4 | player2 vs player4
+    # player1 vs player5 | player2 vs player3    Because of the earlier rows, player5 has
+    # player1 vs player4 | player2 vs player5    to play two matches at the same time in
+    # player3 vs player5 | player4 vs player5  - the last row...
+    #
+    # The output is matches, a list containing all the matches. They are in an order that 
+    # allows them to be put in two columns.
+    # ------------------------------------------------------------------------------------
+    # For example:
+    # matches = [
+    #     ("player1", "player2"), ("player3", "player4"),
+    #     ("player1", "player3"), ("player2", "player4"),
+    #     ("player1", "player4"), ("player2", "player3")
+    # ]
+
+    for x in range(len(players) - 1):
+        for y in players:
+            if not y[1] == x:
+                continue
+            offset = x
+            while True:
+                for z in players:
+                    if z[1] != offset:
+                        continue
+                    if y[0] != z[0] and (y[0], z[0]) not in matches:
+                        matches.append((y[0], z[0]))
+                        y[1] += 1
+                        z[1] += 1
+                        break
+                else:
+                    offset += 1
+                    continue
                 break
-        else:
-            exit("Well... This should not happen. Call Gerhard.")
 
     print("\n\t| Left\t\t\t\t | Right")
     print("\t-------------------------------------------------------------")
     
-    for i in results:
-        p1 = i[0][0]
-        p2 = i[0][1]
-        p3 = i[1][0]
-        p4 = i[1][1]
+    for i in range(0, len(matches), 2):
+        p1 = matches[i][0]
+        p2 = matches[i][1]
+
+        try:
+            p3 = matches[i + 1][0]
+            p4 = matches[i + 1][1]
+        except IndexError:
+            print(f'''\t| {p1} VS. {p2}\n''')
+            return
+        
         left_lenght = len(p1 + p2)
         
         if left_lenght <= 7:
@@ -94,20 +132,9 @@ def two_stages(combos):
         
         print(f'''\t| {p1} VS. {p2} {tabs} | {p3} VS. {p4}\n''')
 
-    if len(right) != 0:
-        print(f'''\t| {right[0][0]} VS. {right[0][1]}\n''')     
-    return
-
 # 1 or 2 stages and print the results
 stages = input("One or two stages? (input 1 or 2): ")
 if stages == '1':
     one_stage(combos)
 elif stages == '2':
-    two_stages(combos)
-
-     
-            
-    
-
-
-
+    two_stages(players)
