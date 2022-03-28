@@ -7,6 +7,14 @@ matchups in Classic Tetris League (CTL), before going live.
 This is an extremly simple script that will take a list of players, and return
 all the combinations, in groupings of 2. 
 
+### Requirements and usage
+**Python 3.6+ is required to run properly**  
+  
+**How to run**  
+1. Download PairPlayers.py
+2. From a terminal/command-prompt within the folder: python PairPlayers.py
+
+
 ### Update history
 v0.03 release (March 28 2022)  
 This is quite a big one. Some big brain logic added by gerhardadler to handle a 4 way restream
