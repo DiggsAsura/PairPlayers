@@ -1,4 +1,4 @@
-# PairPlayers v0.05
+# PairPlayers v0.06
 
 ### Introduction
 PairPlayers was made in a hurry where we needed to sort out all possible combinations of
@@ -9,13 +9,19 @@ all the combinations, in groupings of 2.
 
 ### Requirements and usage
 **Python 3.6+ is required to run properly**  
-  
+    
+
 **How to run**  
 1. Download PairPlayers.py
 2. From a terminal/command-prompt within the folder: python PairPlayers.py
 
+  
 
 ### Update history
+v0.6 release (March 29 2022)  
+- Added option to set start time, and how long each match should last for better overview.
+- Code still a bit messy, will improve later.
+
 v0.05 release (March 28 2022)  
 - gerhardadler fixed logic to handle any amount of players. Big kudos!
 
