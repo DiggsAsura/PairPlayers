@@ -22,6 +22,8 @@ v0.6 release (March 29 2022)
 - Added option to set start time, and how long each match should last for better overview.
 - Code still a bit messy, will improve later.
 
+---
+
 v0.05 release (March 28 2022)  
 - gerhardadler fixed logic to handle any amount of players. Big kudos!
 
