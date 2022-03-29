@@ -1,3 +1,10 @@
+# version 0.06, March 29 2022
+#   - Added option to add time, and lengh of sets to make presentation better for enduser.
+#   - Code a bit messy. Needs a cleanup, will happen later.
+#
+# version 0.05, March 28 2022
+#   - gerhard fixed bug with two stages, now can add any number of players.
+#
 # version 0.04, March 28 2022
 # - Updated logic where it's less then 4 players, just one stage is selected automatically.
 #
@@ -33,9 +40,17 @@
 
 
 import itertools
-import time
 
+
+print("")
 attending = input("How many players attending? (input number): ")
+
+start_time = (input("Event start time? (input XXXX): "))
+hour = int(start_time[0:2])
+minute = int(start_time[2:])
+
+set_length = int(input("Time between matches? (input XX mins): "))
+
 players = []
 count = 1
 
@@ -50,14 +65,22 @@ while (len(players) + 1) <= int(attending):
 combos = list(itertools.combinations(players, 2))
 
 def one_stage(combos):
+    global hour, minute
     match_no = 1
     print("")
     for combo in combos:
-        print(f'\tMatch {match_no}: {combo[0]} VS. {combo[1]}\n')
+        if minute >= 60:
+            hour += minute // 60
+            minute %= 60
+            hour %= 24
+                
+        print(f'\t[{str(hour).rjust(2, "0")}:{str(minute).rjust(2, "0")} | Match {match_no}]: {combo[0].upper()} VS. {combo[1].upper()}\n')
         match_no += 1
+        minute += set_length
     return
 
 def two_stages(players):
+    global hour, minute
     matches = []
 
     for i, value in enumerate(players):
@@ -106,34 +129,46 @@ def two_stages(players):
                     continue
                 break
 
-    print("\n\t| Left\t\t\t\t | Right")
+    print("\n\tTime  | Left\t\t\t\t | Right")
     print("\t-------------------------------------------------------------")
     
     for i in range(0, len(matches), 2):
         p1 = matches[i][0]
         p2 = matches[i][1]
+        
+        if minute >= 60:
+            hour += minute // 60
+            minute %= 60
+            hour %= 24        
 
         try:
             p3 = matches[i + 1][0]
             p4 = matches[i + 1][1]
         except IndexError:
-            print(f'''\t| {p1} VS. {p2}\n''')
+            print(f'\t{str(hour).rjust(2, "0")}:{str(minute).rjust(2, "0")} | {p1.upper()} VS. {p2.upper()}\n')
             return
         
         left_lenght = len(p1 + p2)
         
         if left_lenght <= 7:
             tabs = '\t\t\t'
-        elif left_lenght <= 15:
+        elif left_lenght <= 17:
             tabs = '\t\t'
         elif left_lenght <= 23:
             tabs = '\t'
         elif left_lenght <= 31:
             tabs = ' '
         else:
-            tabs = 'upds'
+            tabs = ' soo long names it screws up the presentation, so lets screw it up some more! '
         
-        print(f'''\t| {p1} VS. {p2} {tabs} | {p3} VS. {p4}\n''')
+        if minute >= 60:
+            hour += minute // 60
+            minute %= 60
+            hour %= 24
+        
+        print(f'\t{str(hour).rjust(2, "0")}:{str(minute).rjust(2, "0")} | {p1.upper()} VS. {p2.upper()} {tabs} | {p3.upper()} VS. {p4.upper()}\n')
+        minute += set_length
+        
 
 # 1 or 2 stages and print the results
 # 1 stage is automatic if number of players is less then 4
